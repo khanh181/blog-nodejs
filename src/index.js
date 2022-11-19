@@ -8,6 +8,10 @@ const app = express();
 const port = 3000;
 
 const router = require('./routes');
+const db = require('./config/db');
+
+//* connect to DB
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 

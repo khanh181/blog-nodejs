@@ -23,6 +23,21 @@ class CourseController {
 
         res.send('couses saved');
     }
+    //* [GET] /courses/:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id)
+            .then((course) =>
+                res.render('courses/edit', { course: course.toObject() }),
+            )
+            .catch(next);
+    }
+    //* [PUT] /courses/:id
+    update(req, res, next) {
+        //? đối số 1 là cái id t truyền lên, đối số 2 là obj ta muốn sửa
+        Course.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/my/stored/courses'))
+            .catch(next);
+    }
 }
 
 module.exports = new CourseController();

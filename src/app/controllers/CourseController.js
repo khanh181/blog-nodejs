@@ -38,6 +38,13 @@ class CourseController {
             .then(() => res.redirect('/my/stored/courses'))
             .catch(next);
     }
+    //* [DELETE] /courses/:id
+    delete(req, res, next) {
+        //? đối số 1 là cái id t truyền lên, đối số 2 là obj ta muốn sửa
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
 }
 
 module.exports = new CourseController();
